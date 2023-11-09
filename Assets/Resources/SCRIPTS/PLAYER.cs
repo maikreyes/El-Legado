@@ -6,12 +6,17 @@ public class PLAYER : MonoBehaviour
 {
     public GameObject MapaPrincipal;
     public GameObject MapaSecundario;
+    public LayerMask capaSuelo;
+
+    private BoxCollider2D boxCollider;
     bool canJump;
     float jump;
+    float jumpSpeed;
     float anteriorposy;
     // Start is called before the first frame update
     void Start()
     {
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -27,7 +32,6 @@ public class PLAYER : MonoBehaviour
          }
         if(Input.GetKey("up"))
         {
-            Debug.Log(gameObject.transform.position.y == anteriorposy);
             ManageJump();
         }
         if(Input.GetKeyDown("x"))
@@ -40,42 +44,53 @@ public class PLAYER : MonoBehaviour
        
     }
 
+    bool EstaEnELSuelo()
+    {
+        RaycastHit2D raycasthit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaSuelo);
+        return raycasthit != null; 
+    }
+
     void FixedUpdate()
     {
         anteriorposy = gameObject.transform.position.y;
     }
     void ManageJump()
     {
-
-        if(gameObject.transform.position.y == anteriorposy){
+        if (EstaEnELSuelo())
+        {
             canJump = true;
         }
-        else 
+        else
         {
             canJump = false;
         }
 
-        if(canJump)
+        if (canJump)
         {
-            jump += 20f ;
+            jump += 1.5f;
+            jumpSpeed = 2f;
         }
 
-        gameObject.transform.Translate(0, jump * Time.deltaTime, 0);
+        float newY = Mathf.Lerp(gameObject.transform.position.y, (gameObject.transform.position.y + jump)*Time.deltaTime, Time.deltaTime * jumpSpeed);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, newY, gameObject.transform.position.z);
+
         if (jump > 0)
         {
-            jump -= .005f + (jump/50);
-        } 
+            jump -= 0.005f + (jump / 50);
+        }
         else
         {
             jump = 0;
         }
     }
 
+
     void Teleport() 
     {
         
+        
 
-        if(MapaPrincipal.activeSelf == false)
+        if(MapaPrincipal.activeInHierarchy == false)
         {
             MapaPrincipal.SetActive(true);
             MapaSecundario.SetActive(false);

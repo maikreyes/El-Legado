@@ -12,7 +12,7 @@
 
 ## Instalación
 
-Para jugar **Dimensional Shift**, sigue los siguientes pasos para instalar el proyecto:
+Para jugar **El Legado**, sigue los siguientes pasos para instalar el proyecto:
 
 1. Clona este repositorio:
    ```bash

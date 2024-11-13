@@ -6,9 +6,6 @@
 
 - **Mundos Paralelos**: Cambia entre dos mundos diferentes para sortear obstáculos y activar plataformas que solo existen en uno de los mundos.
 - **Plataformas Dinámicas**: Los niveles incluyen plataformas que solo aparecen en uno de los mundos, y debes usar los cambios dimensionales para avanzar.
-- **Desafíos y Acertijos**: Resuelve acertijos usando las características únicas de cada mundo para desbloquear nuevas áreas.
-- **Estilo Visual Retro**: Gráficos 2D en un estilo retro que evocan la nostalgia de los juegos clásicos de plataformas.
-- **Controles Intuitivos**: Diseño de controles simple pero desafiante, ideal para jugadores de todos los niveles.
 
 ## Instalación
 
